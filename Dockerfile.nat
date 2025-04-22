@@ -1,0 +1,15 @@
+# Dockerfile.nat
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# ejecutable nativo al contenedor
+COPY build/native/nativeCompile/test_unicomer .
+
+# puerto test_unicomer
+EXPOSE 8080
+
+# Usa el ejecutable como entrypoint
+ENTRYPOINT ["./test_unicomer"]
